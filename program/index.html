@@ -368,6 +368,7 @@
 		}
 
 		async function catbrowse() {
+		  document.domain = "sssmediacentre.org"; // to avoid CORS error
 		  const apiprefix = 'https://sssmediacentre.org/api/public/find';
 		  const audiocatapisuffix = '?col=audiocategories';
 		  const audiocatquery = '&qry=%7B%22isDeleted%22%3Afalse%7D&order=%7B%7D&limit=1000';
