@@ -367,6 +367,30 @@
 			modalbody.innerHTML = htmlstring;
 		}
 
+		async function catbrowse() {
+		  const apiprefix = 'https://sssmediacentre.org/api/public/find';
+		  const audiocatapisuffix = '?col=audiocategories';
+		  const audiocatquery = '&qry=%7B%22isDeleted%22%3Afalse%7D&order=%7B%7D&limit=1000';
+		  const videodetailprefix = 'https://sssmediacentre.org/watch/';
+		  const categoryprefix = "https://sssmediacentre.org/listen/?catId=";
+		  var htmlstring = '';
+		  try {
+		    const response = await fetch(apiprefix + audiocatapisuffix + audiocatquery);
+		    const responseObj = await response.json();
+		    if (responseObj.type === "success") {
+		        //for ( var i = 0; i < responseObj.data.length; i++) {
+				//var j = i + 1;
+				//if (responseObj.result.items[i].iteamType === "AUDIO") {
+				  // htmlstring += `<p>`+j+`. <a href="` + audiodetailprefix + responseObj.result.items[i].iteamId 
+			htmlstring += `<p>`+responseObj.data.length+`. </p>`;
+		    }
+		  } catch (error) {
+		    console.error(error.message);
+		  }
+		  var modalbody = document.getElementById("myModalbody2");
+		  modalbody.innerHTML = htmlstring;
+		}
+
 		
 		function formatGMTtime(timestring) {
 			var hours = parseInt(timestring.substring(11, 13));
@@ -712,6 +736,7 @@
 			</div>
 			<div class="modal-body" id="srchbox">
 				<input type="text" id="srchtxt" name="srchtxt">&nbsp;<button onclick="customsearch()">&#128269;</button>
+				&nbsp;<button onclick="catbrowse()">Browse audio categories</button>
 			</div>
 			<div class="modal-body" id="myModalbody2">
 				<p>Some text in the Modal Body</p>
