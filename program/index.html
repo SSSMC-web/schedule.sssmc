@@ -403,7 +403,8 @@
 				if (!('parent' in responseObj.data[i])) { // so it is a top level category
 					category.name = responseObj.data[i].catogoryName;
 					category.id = responseObj.data[i].catogoryId;
-					categories.push(category);
+					categories.push(JSON.parse(JSON.stringify(category)));
+					// https://stackoverflow.com/questions/25321777/pushing-objects-in-an-array-only-returns-last-object-pushed
 					console.log(categories);
 					console.log(category.name);
 					console.log(category);
