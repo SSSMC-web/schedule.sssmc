@@ -376,7 +376,8 @@
 		  const categoryprefix = "https://sssmediacentre.org/listen/?catId=";
 		  var htmlstring = '';
 		  try {
-		    const response = await fetch('./data/audiocategories.json');
+		    const response = await fetch(apiprefix+audiocatapisuffix+audiocatquery);
+		    console.log(response.code);
 		    const responseObj = await response.json();
 		    if (responseObj.type === "success") {
 		        //for ( var i = 0; i < responseObj.data.length; i++) {
