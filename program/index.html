@@ -376,7 +376,6 @@
 		  var htmlstring = '';
 		  try {
 		    const response = await fetch('./data/audiocategories.json');
-		    console.log(response.code);
 		    const responseObj = await response.json();
 		    var categories = [];
 		    var arr = [];
@@ -384,7 +383,8 @@
 		    if (responseObj.type === "success") {
 		        for ( var i = 0; i < responseObj.data.length; i++) {
 				if (!('parent' in responseObj.data[i])) { // so it is a top level category
-					categories.push(responseObj.data[i].catogoryName);				
+					categories.push(responseObj.data[i].catogoryName);
+					htmlstring += "<p>"+responseObj.data[i].catogoryName+"</p>";
 				}
 			}
 			//arr = categories.sort((a, b) => a.localeCompare(b));
