@@ -17,6 +17,7 @@
 		//console.log('tzoneoffsetmilli as initialized = '+tzoffsetmilli)
 		var timeZoneStr = Intl.DateTimeFormat().resolvedOptions().timeZone;
 		var strStreamNameSelected;
+		const audiocatresponse, audiocatresponseObj;	// global constants
 
 		function datesdropdownupdate() {
 			// get currentlocaldatetime, and get dates 30 days before that.
@@ -392,17 +393,17 @@
 		  const categoryprefix = "https://sssmediacentre.org/listen/?catId=";
 		  var htmlstring = '<h3>Top level categories:</h3>';
 		  try {
-		    const response = await fetch('./data/audiocategories.json');
-		    const responseObj = await response.json();
+		    audiocatresponse = await fetch('./data/audiocategories.json');
+		    audiocatresponseObj = await audiocatresponse.json(); // use the global constants to avoid redo-ing
 		    var categories = [];
 		    var arr = [];
 		    var category = {};
 		    htmlstring += "<ol>";
-		    if (responseObj.type === "success") {
-		        for ( var i = 0; i < responseObj.data.length; i++) {
-				if (!('parent' in responseObj.data[i])) { // so it is a top level category
-					category.name = responseObj.data[i].catogoryName;
-					category.id = responseObj.data[i].catogoryId;
+		    if (audiocatresponseObj.type === "success") {
+		        for ( var i = 0; i < audiocatresponseObj.data.length; i++) {
+				if (!('parent' in audiocatresponseObj.data[i])) { // so it is a top level category
+					category.name = audiocatresponseObj.data[i].catogoryName;
+					category.id = audiocatresponseObj.data[i].catogoryId;
 					categories.push(JSON.parse(JSON.stringify(category)));
 					// https://stackoverflow.com/questions/25321777/pushing-objects-in-an-array-only-returns-last-object-pushed
 					
@@ -416,15 +417,7 @@
 			 		<a href="javascript:void(0);" onclick="viewsubcat('` + arr[d].id + `')" style="text-decoration:none" >
 			 						<small>view subcategories&nbsp;	&#x27A1; </small>
 			 					</a> </li>`;
-			 }
-			//     for (var d = 0; d < categories.length; d++) {
-			// 	//htmlstring += `<li>`+ arr[d] +`</a>
-   //  				htmlstring += `<li><a href="`+ categoryprefix + categories[d].id + `" target="_blank">`
-			// 		+ categories[d].name +`</a>&nbsp;
-			// 		<a href="javascript:void(0);" onclick="viewsubcat('` + categories[d].id + `')" style="text-decoration:none" >
-			// 						<small>view subcategories&nbsp;	&#x27A1; </small>
-			// 					</a> </li>`;
-			// }
+			 }			
 			htmlstring += "</ol>";			
 		    }
 		  } catch (error) {
