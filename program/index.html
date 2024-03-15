@@ -378,9 +378,30 @@
 		}
 
 		async function viewsubcat(catid) {
+			var category = {};
+			var categories = [];
+			for ( var i = 0; i < audiocatresponseObj.data.length; i++) {
+				if (audiocatresponseObj.data[i].parent === catid) { // so it is subcategory of catid
+					category.name = audiocatresponseObj.data[i].catogoryName;
+					category.id = audiocatresponseObj.data[i].catogoryId;
+					categories.push(JSON.parse(JSON.stringify(category)));
+					// https://stackoverflow.com/questions/25321777/pushing-objects-in-an-array-only-returns-last-object-pushed
+					
+				}
 			var htmlstring = `<h3><a href="javascript:void(0);" onclick="viewparentcat('` + catid + `')" style="text-decoration:none" >
 									Back to previous list
-								</a></h3>`;
+								</a></h3><ol>`;
+				//if (categories.length > 0)
+			arr = categories.sort((a, b) => a.name.localeCompare(b.name));			
+			 for (var d = 0; d < arr.length; d++) {
+			 	//htmlstring += `<li>`+ arr[d] +`</a>
+     				htmlstring += `<li><a href="`+ categoryprefix + arr[d].id + `" target="_blank">`
+			 		+ arr[d].name +`</a>&nbsp;
+			 		<a href="javascript:void(0);" onclick="viewsubcat('` + arr[d].id + `')" style="text-decoration:none" >
+			 						<small>view subcategories&nbsp;	&#x27A1; </small>
+			 					</a> </li>`;
+			 }			
+			htmlstring += "</ol>";
 			var modalbody = document.getElementById("myModalbody2");
 			modalbody.innerHTML = htmlstring;
 		}
