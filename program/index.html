@@ -378,10 +378,12 @@
 		    const response = await fetch('./data/audiocategories.json');
 		    console.log(response.code);
 		    const responseObj = await response.json();
+		    var j = 0;
 		    if (responseObj.type === "success") {
 		        for ( var i = 0; i < responseObj.data.length; i++) {
-				var j = i + 1;
-				htmlstring += `<p>`+j+`</p>`;
+				if (responseObj.data[i].parent == "b6a2b7ac-2678-4b16-a5d9-4678fd928ebc") {
+				var j = j + 1;
+				htmlstring += `<p>`+j+`. `+ responseObj.data[i].catogoryName +`</p>`;
 				//if (responseObj.result.items[i].iteamType === "AUDIO") {
 				  // htmlstring += `<p>`+j+`. <a href="` + audiodetailprefix + responseObj.result.items[i].iteamId 
 			        htmlstring += `<p>`+responseObj.data.length+`. </p>`;
