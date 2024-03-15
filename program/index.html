@@ -407,7 +407,7 @@
 				}
 			}
 			arr = categories.sort((a, b) => a.name.localeCompare(b.name));			
-			for (var d in arr) {
+			for (var d = 0; d < arr.length; d++) {
 				//htmlstring += `<li>`+ arr[d] +`</a>
     				htmlstring += `<li><a href="`+ categoryprefix + arr[d].id + `" target="_blank">`
 					+ arr[d].name +`</a>&nbsp;
