@@ -387,10 +387,10 @@
 					htmlstring += "<p>"+responseObj.data[i].catogoryName+"</p>";
 				}
 			}
-			//arr = categories.sort((a, b) => a.localeCompare(b));
+			arr = categories.sort((a, b) => a.localeCompare(b));
 			htmlstring += "<ol>";
-			for (category in categories) {
-				htmlstring += `<li>`+ category +`</li>`;
+			for (var d in arr) {
+				htmlstring += `<li>`+ arr[d] +`</li>`;
 			}
 			htmlstring += "</ol>";
 			
