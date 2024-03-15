@@ -379,11 +379,12 @@
 		    console.log(response.code);
 		    const responseObj = await response.json();
 		    if (responseObj.type === "success") {
-		        //for ( var i = 0; i < responseObj.data.length; i++) {
-				//var j = i + 1;
+		        for ( var i = 0; i < responseObj.data.length; i++) {
+				var j = i + 1;
+				htmlstring += `<p>`+j+`. `</p>`;
 				//if (responseObj.result.items[i].iteamType === "AUDIO") {
 				  // htmlstring += `<p>`+j+`. <a href="` + audiodetailprefix + responseObj.result.items[i].iteamId 
-			htmlstring += `<p>`+responseObj.data.length+`. </p>`;
+			        htmlstring += `<p>`+responseObj.data.length+`. </p>`;
 		    }
 		  } catch (error) {
 		    console.error(error.message);
