@@ -405,28 +405,26 @@
 					category.id = responseObj.data[i].catogoryId;
 					categories.push(JSON.parse(JSON.stringify(category)));
 					// https://stackoverflow.com/questions/25321777/pushing-objects-in-an-array-only-returns-last-object-pushed
-					console.log(categories);
-					console.log(category.name);
-					console.log(category);
+					
 				}
 			}
-			//arr = categories.sort((a, b) => a.name.localeCompare(b.name));			
-			// for (var d = 0; d < arr.length; d++) {
+			arr = categories.sort((a, b) => a.name.localeCompare(b.name));			
+			 for (var d = 0; d < arr.length; d++) {
+			 	//htmlstring += `<li>`+ arr[d] +`</a>
+     				htmlstring += `<li><a href="`+ categoryprefix + arr[d].id + `" target="_blank">`
+			 		+ arr[d].name +`</a>&nbsp;
+			 		<a href="javascript:void(0);" onclick="viewsubcat('` + arr[d].id + `')" style="text-decoration:none" >
+			 						<small>view subcategories&nbsp;	&#x27A1; </small>
+			 					</a> </li>`;
+			 }
+			//     for (var d = 0; d < categories.length; d++) {
 			// 	//htmlstring += `<li>`+ arr[d] +`</a>
-   //  				htmlstring += `<li><a href="`+ categoryprefix + arr[d].id + `" target="_blank">`
-			// 		+ arr[d].name +`</a>&nbsp;
-			// 		<a href="javascript:void(0);" onclick="viewsubcat('` + arr[d].id + `')" style="text-decoration:none" >
+   //  				htmlstring += `<li><a href="`+ categoryprefix + categories[d].id + `" target="_blank">`
+			// 		+ categories[d].name +`</a>&nbsp;
+			// 		<a href="javascript:void(0);" onclick="viewsubcat('` + categories[d].id + `')" style="text-decoration:none" >
 			// 						<small>view subcategories&nbsp;	&#x27A1; </small>
 			// 					</a> </li>`;
 			// }
-			    for (var d = 0; d < categories.length; d++) {
-				//htmlstring += `<li>`+ arr[d] +`</a>
-    				htmlstring += `<li><a href="`+ categoryprefix + categories[d].id + `" target="_blank">`
-					+ categories[d].name +`</a>&nbsp;
-					<a href="javascript:void(0);" onclick="viewsubcat('` + categories[d].id + `')" style="text-decoration:none" >
-									<small>view subcategories&nbsp;	&#x27A1; </small>
-								</a> </li>`;
-			}
 			htmlstring += "</ol>";			
 		    }
 		  } catch (error) {
