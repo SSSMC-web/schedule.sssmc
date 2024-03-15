@@ -368,17 +368,17 @@
 		}
 
 		async function viewparentcat(catid) {
-			var htmlstring = `<a href="javascript:void(0);" onclick="viewparentcat('` + catid + `')" style="text-decoration:none" >
+			var htmlstring = `<h3><a href="javascript:void(0);" onclick="viewparentcat('` + catid + `')" style="text-decoration:none" >
 									Back to previous list
-								</a>`;
+								</a></h3>`;
 			var modalbody = document.getElementById("myModalbody2");
 			modalbody.innerHTML = htmlstring;
 		}
 
 		async function viewsubcat(catid) {
-			var htmlstring = `<a href="javascript:void(0);" onclick="viewparentcat('` + catid + `')" style="text-decoration:none" >
+			var htmlstring = `<h3><a href="javascript:void(0);" onclick="viewparentcat('` + catid + `')" style="text-decoration:none" >
 									Back to previous list
-								</a>`;
+								</a></h3>`;
 			var modalbody = document.getElementById("myModalbody2");
 			modalbody.innerHTML = htmlstring;
 		}
@@ -390,33 +390,32 @@
 		  const audiocatquery = '&qry=%7B%22isDeleted%22%3Afalse%7D&order=%7B%7D&limit=1000';
 		  const videodetailprefix = 'https://sssmediacentre.org/watch/';
 		  const categoryprefix = "https://sssmediacentre.org/listen/?catId=";
-		  var htmlstring = '';
+		  var htmlstring = '<h3>Top level categories:</h3>';
 		  try {
 		    const response = await fetch('./data/audiocategories.json');
 		    const responseObj = await response.json();
 		    var categories = [];
 		    var arr = [];
-		    var category = '';
+		    var category = {};
 		    htmlstring += "<ol>";
 		    if (responseObj.type === "success") {
 		        for ( var i = 0; i < responseObj.data.length; i++) {
 				if (!('parent' in responseObj.data[i])) { // so it is a top level category
-					//categories.push(responseObj.data[i].catogoryName);
-				//}
-			//}
-			//arr = categories.sort((a, b) => a.localeCompare(b));
-			
-			//for (var d in arr) {
+					category.name = responseObj.data[i].catogoryName;
+					category.id = responseObj.data[i].catogoryId;
+					categories.push(category);
+				}
+			}
+			arr = categories.sort((a, b) => a.name.localeCompare(b.name));			
+			for (var d in arr) {
 				//htmlstring += `<li>`+ arr[d] +`</a>
-    				htmlstring += `<li><a href="`+categoryprefix+responseObj.data[i].catogoryId+`" target="_blank">`
-					+ responseObj.data[i].catogoryName +`</a>&nbsp;
-					<a href="javascript:void(0);" onclick="viewsubcat('` + responseObj.data[i].catogoryId + `')" style="text-decoration:none" >
+    				htmlstring += `<li><a href="`+ categoryprefix + arr[d].id + `" target="_blank">`
+					+ arr[d].name +`</a>&nbsp;
+					<a href="javascript:void(0);" onclick="viewsubcat('` + arr[d].id + `')" style="text-decoration:none" >
 									<small>view subcategories&nbsp;	&#x27A1; </small>
 								</a> </li>`;
-			  }
 			}
-			htmlstring += "</ol>";
-			
+			htmlstring += "</ol>";			
 		    }
 		  } catch (error) {
 		    console.error(error.message);
