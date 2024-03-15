@@ -381,7 +381,7 @@
 		    var j = 0;
 		    if (responseObj.type === "success") {
 		        for ( var i = 0; i < responseObj.data.length; i++) {
-				if (responseObj.data[i].parent == "b6a2b7ac-2678-4b16-a5d9-4678fd928ebc") {
+				if !('parent' in responseObj.data[i]) { // so it is a top level category
 				var j = j + 1;
 				htmlstring += `<p>`+j+`. `+ responseObj.data[i].catogoryName +`</p>`;
 				}
