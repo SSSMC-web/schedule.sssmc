@@ -369,12 +369,18 @@
 			modalbody.innerHTML = htmlstring;
 		}
 
-		async function viewparentcat(catid) {
-			var htmlstring = `<h3><a href="javascript:void(0);" onclick="viewparentcat('` + catid + `')" style="text-decoration:none" >
-									Back to previous list
-								</a></h3>`;
-			var modalbody = document.getElementById("myModalbody2");
-			modalbody.innerHTML = htmlstring;
+		function viewparentcat(catid) {
+			for ( var i = 0; i < audiocatresponseObj.data.length; i++) {
+				if (audiocatresponseObj.data[i].catogoryId === catid) { // so it is the parent
+					if (!('parent' in audiocatresponseObj.data[i])) { // so it is a top level category 
+						catbrowse();
+					}
+					else { 
+						viewsubcat(audiocatresponseObj.data[i].parent);
+					}
+					break;
+				}
+			}
 		}
 
 		async function viewsubcat(catid) {
