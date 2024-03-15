@@ -392,9 +392,13 @@
 			}
 			var htmlstring = `<h3><a href="javascript:void(0);" onclick="viewparentcat('` + catid + `')" style="text-decoration:none" >
 									Back to previous list
-								</a></h3><ol>`;
-				//if (categories.length > 0)
-			arr = categories.sort((a, b) => a.name.localeCompare(b.name));			
+								</a></h3>`;
+			if (categories.length == 0) {
+				htmlstring += 'This category has no sub-categories.';				
+			} else {
+				htmlstring += '<ol>';
+			
+			 arr = categories.sort((a, b) => a.name.localeCompare(b.name));			
 			 for (var d = 0; d < arr.length; d++) {
 			 	//htmlstring += `<li>`+ arr[d] +`</a>
      				htmlstring += `<li><a href="`+ categoryprefix + arr[d].id + `" target="_blank">`
@@ -402,8 +406,10 @@
 			 		<a href="javascript:void(0);" onclick="viewsubcat('` + arr[d].id + `')" style="text-decoration:none" >
 			 						<small>view subcategories&nbsp;	&#x27A1; </small>
 			 					</a> </li>`;
-			 }			
-			htmlstring += "</ol>";
+			 }
+			 htmlstring += "</ol>";
+			} //else
+			
 			var modalbody = document.getElementById("myModalbody2");
 			modalbody.innerHTML = htmlstring;
 		}
