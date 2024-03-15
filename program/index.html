@@ -367,6 +367,23 @@
 			modalbody.innerHTML = htmlstring;
 		}
 
+		async function viewparentcat(catid) {
+			var htmlstring = `<a href="javascript:void(0);" onclick="viewparentcat('` + catid + `')" style="text-decoration:none" >
+									Back to previous list
+								</a>`;
+			var modalbody = document.getElementById("myModalbody2");
+			modalbody.innerHTML = htmlstring;
+		}
+
+		async function viewsubcat(catid) {
+			var htmlstring = `<a href="javascript:void(0);" onclick="viewparentcat('` + catid + `')" style="text-decoration:none" >
+									Back to previous list
+								</a>`;
+			var modalbody = document.getElementById("myModalbody2");
+			modalbody.innerHTML = htmlstring;
+		}
+			
+
 		async function catbrowse() {
 		  const apiprefix = 'https://sssmediacentre.org/api/public/find';
 		  const audiocatapisuffix = '?col=audiocategories';
@@ -394,8 +411,7 @@
     				htmlstring += `<li><a href="`+categoryprefix+responseObj.data[i].catogoryId+`" target="_blank">`
 					+ responseObj.data[i].catogoryName +`</a>&nbsp;
 					<a href="javascript:void(0);" onclick="viewsubcat('` + responseObj.data[i].catogoryId + `')" style="text-decoration:none" >
-									<img src="img/dl.png" alt="Download" border="0"
-										onMouseOver="this.src='img/dlon.png'" onMouseOut="this.src='img/dl.png'">
+									<small>view subcategories&nbsp;	&#x27A1; </small>
 								</a> </li>`;
 			  }
 			}
