@@ -384,9 +384,7 @@
 				if (responseObj.data[i].parent == "b6a2b7ac-2678-4b16-a5d9-4678fd928ebc") {
 				var j = j + 1;
 				htmlstring += `<p>`+j+`. `+ responseObj.data[i].catogoryName +`</p>`;
-				//if (responseObj.result.items[i].iteamType === "AUDIO") {
-				  // htmlstring += `<p>`+j+`. <a href="` + audiodetailprefix + responseObj.result.items[i].iteamId 
-			        htmlstring += `<p>`+responseObj.data.length+`. </p>`;
+				}
 			}
 		    }
 		  } catch (error) {
