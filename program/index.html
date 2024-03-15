@@ -375,6 +375,9 @@
 		  const categoryprefix = "https://sssmediacentre.org/listen/?catId=";
 		  var htmlstring = '';
 		  try {
+			  $.getJSON('https://www.whateverorigin.org/get?url=' + encodeURIComponent('https://google.com') + '&callback=?', function(data){
+	alert(data.contents);
+});
 		    const response = await fetch(apiprefix+audiocatapisuffix+audiocatquery);
 		    console.log(response.code);
 		    const responseObj = await response.json();
