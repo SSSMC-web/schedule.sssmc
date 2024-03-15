@@ -378,14 +378,22 @@
 		    const response = await fetch('./data/audiocategories.json');
 		    console.log(response.code);
 		    const responseObj = await response.json();
-		    var j = 0;
+		    var categories = [];
+		    var arr = [];
+		    var category = '';
 		    if (responseObj.type === "success") {
 		        for ( var i = 0; i < responseObj.data.length; i++) {
-				if !('parent' in responseObj.data[i]) { // so it is a top level category
-				var j = j + 1;
-				htmlstring += `<p>`+j+`. `+ responseObj.data[i].catogoryName +`</p>`;
+				if (!('parent' in responseObj.data[i])) { // so it is a top level category
+					categories.push(responseObj.data[i].catogoryName);				
 				}
 			}
+			arr = categories.sort((a, b) => a.localeCompare(b));
+			htmlstring += "<ol>";
+			for (category in arr) {
+				htmlstring += `<li>`+j+`. `+ category +`</li>`;
+			}
+			htmlstring += "</ol>";
+			
 		    }
 		  } catch (error) {
 		    console.error(error.message);
