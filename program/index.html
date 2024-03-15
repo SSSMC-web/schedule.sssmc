@@ -387,9 +387,9 @@
 					categories.push(responseObj.data[i].catogoryName);				
 				}
 			}
-			arr = categories.sort((a, b) => a.localeCompare(b));
+			//arr = categories.sort((a, b) => a.localeCompare(b));
 			htmlstring += "<ol>";
-			for (category in arr) {
+			for (category in categories) {
 				htmlstring += `<li>`+ category +`</li>`;
 			}
 			htmlstring += "</ol>";
