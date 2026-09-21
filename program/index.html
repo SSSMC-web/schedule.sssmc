@@ -300,11 +300,13 @@
 		}
 
 		async function getSSSMCresults(searchterm) {
-		  const searchapiprefix = 'https://api.sssmediacentre.org/web/search/?searchKey=';
-		  const searchapisuffix = '&type=AUDIO';
+		  //const searchapiprefix = 'https://api.sssmediacentre.org/web/search/?searchKey=';
+		  //const searchapisuffix = '&type=AUDIO';
+		  const searchapiprefix = 'https://v2.sssmediacentre.org/api/public/search/audio/?qry=%7B%22isEnabled%22%3Atrue%2C%22isDeleted%22%3Afalse%7D&limit=18&order=%7B%22publishDate%22%3A-1%7D&text=';
+		  const searchapisuffix = '&';
 		  const audiodetailprefix = 'https://sssmediacentre.org/listen/';
 		  const videodetailprefix = 'https://sssmediacentre.org/watch/';
-		  const categoryprefix = "https://sssmediacentre.org/listen/?catId=";
+		  const categoryprefix = "https://v2.sssmediacentre.org/listen/?catId=";
 		  var htmlstring = '';
 		  try {
 		    const response = await fetch(searchapiprefix + searchterm + searchapisuffix);
